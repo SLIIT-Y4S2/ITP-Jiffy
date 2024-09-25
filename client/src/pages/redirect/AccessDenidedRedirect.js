@@ -1,5 +1,5 @@
 function AccessDeniedRedirect() {
-    window.location.href = 'http://localhost:3000/error';
+    window.location.href = 'https://localhost:3000/error';
     return null;
 }
 

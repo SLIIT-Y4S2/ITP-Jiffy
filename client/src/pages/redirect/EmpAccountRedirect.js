@@ -1,5 +1,5 @@
 function EmpAccountRedirect() {
-    window.location.href = 'http://localhost:3000/emp-profile';
+    window.location.href = 'https://localhost:3000/emp-profile';
     return null;
 }
 
