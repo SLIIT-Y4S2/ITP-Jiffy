@@ -14,6 +14,9 @@ const certificate = fs.readFileSync('./security/cert.pem')
 
 const googleOAuthRoutes = require('./routes/google-oauth-routes')
 
+/* CSRF routes */
+const csrfRoutes = require("./routes/csrf-routes");
+
 const userRoutes = require('./routes/userRoutes')
 const siteFeedbacks = require('./routes/SiteFeedbackRoutes')
 
@@ -82,6 +85,8 @@ app.use(deserializeToken);
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
+const cookieParser = require('cookie-parser');
+
 app.use(
   cookieSession({
     name: "cookie-session",
@@ -97,6 +102,10 @@ app.use(passport.session());
 
 // Google oauth routes
 app.use('/auth', googleOAuthRoutes)
+
+// CSRF routes and cookie-parser middleware
+app.use(cookieParser());
+app.use("/csrf", csrfRoutes);
 
 // routes
 app.use('/api/users', userRoutes)

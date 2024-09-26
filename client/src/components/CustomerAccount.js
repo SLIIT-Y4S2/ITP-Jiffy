@@ -112,10 +112,20 @@ function CustomerAccount() {
         console.log("Feedback "+sFeedback)
         const siteFeedback = { name, sFeedback, email}
     
+        const csrfResponse = await fetch('/csrf/generate', {
+          method: 'GET',
+          credentials: 'include'
+        })
+        const csrfData = await csrfResponse.json();
+        const csrfToken = csrfData.csrfToken;
+        console.log("csrfToken", csrfToken);
+
         const response = await fetch('/api/site-feedbacks', {
           method: 'POST',
+          credentials: 'include',
           body: JSON.stringify(siteFeedback),
           headers: {
+            'x-csrf-token': csrfToken, // Include the CSRF token in the header
             'Content-Type': 'application/json'
           }
         })
@@ -128,6 +138,7 @@ function CustomerAccount() {
         }
     
         if (response.ok) {
+          alert('New feedback added');
           console.log('new feedback added', json)
           window.location.reload();
         }

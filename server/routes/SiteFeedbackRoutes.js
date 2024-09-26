@@ -7,6 +7,7 @@ const {
     updatePublicSiteFeedback,
     updatePrivateSiteFeedback
 } = require('../controllers/siteFeedbackController')
+const { doubleCsrfProtection } = require('../controllers/csrf-controller')
 
 const router = express.Router()
 
@@ -17,7 +18,7 @@ router.get('/private', getPrivateSiteFeedbacks)
 router.get('/public', getPublicSiteFeedbacks)
 
 // POST a new feedback
-router.post('/', createSiteFeedback)
+router.post('/', doubleCsrfProtection, createSiteFeedback)
 
 // DELETE a feedback
 router.delete('/:id', deleteSiteFeedback)
