@@ -43,6 +43,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 // express app
 const app = express()
+app.set('trust proxy', 1)
 
 // middleware
 app.use(express.json())

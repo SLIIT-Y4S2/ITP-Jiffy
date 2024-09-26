@@ -114,7 +114,9 @@ import ProductStatsPage from "./pages/dashboard/machineManagement/ProductStatsPa
 import ReportsPage from "./pages/dashboard/machineManagement/ReportsPage";
 import MachineReportPage from "./pages/dashboard/machineManagement/MachineReportPage";
 import FactoryOverviewPage from "./pages/dashboard/factoryManagement/OverviewFactoryPage";
-
+import GoogleOAuth from './pages/auth/GoogleOAuth.js';
+import Cookies from 'js-cookie';
+import RequestDenied from './pages/RequestDenied.js';
 
 function App() {
     return(
@@ -130,6 +132,13 @@ function App() {
                 <Route path="/emp-login-redirect" element={<EmpLoginRedirect />}/>
                 <Route path="/emp-account-redirect" element={<EmpAccountRedirect />}/>
 
+                {/* Google OAuth Routes */}
+                <Route path="/auth/google" element={<GoogleOAuth />} />
+
+                {/* Rate limiting */}
+                <Route path="/request-denied" element={Cookies.get("rateLimit") ? <RequestDenied error={Cookies.get("rateLimit")} />:<Navigate to='/login-redirect'/>} />
+           
+            
                 <Route path="/login" element={!localStorage.getItem('user')? <LoginPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/signup" element={!localStorage.getItem('user')? <RegisterPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/account" element={localStorage.getItem('user')? <AccountPage />:<Navigate to='/login-redirect'/>}/>
