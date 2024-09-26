@@ -60,6 +60,10 @@ app.use(cors({
 }))
 app.use(helmet());
 
+// deserialize jwt token (Preventing Unauthorized Access)
+const deserializeToken = require('./middleware/deserializeToken.js');
+app.use(deserializeToken);
+
 // routes
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)

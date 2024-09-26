@@ -14,14 +14,15 @@ const {
   getRecentlyAdded,
   getSupplierByStatus
 } = require('../controllers/supplierController');
+const requireEmployee = require("../middleware/requireEmployee");
 
 const router = express.Router();
 
 //*Add a new supplier
-router.post("/", newSupplier);
+router.post("/",requireEmployee,  newSupplier);
 
 //*Get All Suppliers
-router.get("/", allSuppliers);
+router.get("/",requireEmployee,  allSuppliers);
 
 //*Get a specific supplier by ID
 router.get("/:id", supplierById);
