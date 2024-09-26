@@ -114,9 +114,18 @@ import ProductStatsPage from "./pages/dashboard/machineManagement/ProductStatsPa
 import ReportsPage from "./pages/dashboard/machineManagement/ReportsPage";
 import MachineReportPage from "./pages/dashboard/machineManagement/MachineReportPage";
 import FactoryOverviewPage from "./pages/dashboard/factoryManagement/OverviewFactoryPage";
-
+import GoogleOAuth from './pages/auth/GoogleOAuth.js';
+import Cookies from 'js-cookie';
 
 function App() {
+    if(Cookies.get("cookie-session-user")){
+        localStorage.setItem('user', Cookies.get("cookie-session-user"));
+        Cookies.remove("cookie-session-user");
+    }
+    if(!Cookies.get("cookie-session") && JSON.parse(localStorage.getItem('user'))?.hasOwnProperty('authType')){
+        localStorage.removeItem('user');
+    }
+
     return(
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <ToastContainer/>
@@ -129,6 +138,9 @@ function App() {
                 <Route path="/account-redirect" element={<AccountRedirect />}/>
                 <Route path="/emp-login-redirect" element={<EmpLoginRedirect />}/>
                 <Route path="/emp-account-redirect" element={<EmpAccountRedirect />}/>
+
+                {/* Google OAuth Routes */}
+                <Route path="/auth/google" element={<GoogleOAuth />} />
 
                 <Route path="/login" element={!localStorage.getItem('user')? <LoginPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/signup" element={!localStorage.getItem('user')? <RegisterPage />:<Navigate to='/account-redirect'/>}/>

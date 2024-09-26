@@ -1,4 +1,5 @@
 import { useAuthContext } from "./useAuthContext"
+import Cookies from 'js-cookie'
 
 export const useLogout = () => {
     const {dispatch} = useAuthContext()
@@ -7,6 +8,11 @@ export const useLogout = () => {
         // remove user from storage
         localStorage.removeItem('user')
 
+        // remove user-session cookie
+        if (Cookies.get("cookie-session")) {
+            Cookies.remove("cookie-session");
+        }
+        
         // dispatch logout action
         dispatch({type: 'LOGOUT'})
     }
