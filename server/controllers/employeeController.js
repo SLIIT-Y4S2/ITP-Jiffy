@@ -46,7 +46,7 @@ const createUser = async (req, res) => {
     if(await Employee.findOne({ email: { $eq: email } })){
         return res.status(400).json({ error: 'Email already in use' })
     }
-    if (phone.length != 10 || !isPhoneValid) {
+    if (typeof phone !== 'string' || phone.length != 10 || !isPhoneValid) {
         return res.status(400).json({ error: 'Phone number is not valid' })
     }
     if (!validator.isStrongPassword(password)) {
@@ -93,7 +93,7 @@ const updateUser = async (req, res) => {
     if (!validator.isEmail(req.body.email)) {
         return res.status(400).json({ error: 'Email is not valid' })
     }
-    if (phone.length != 10 || !isPhoneValid) {
+    if (typeof phone !== 'string' || phone.length != 10 || !isPhoneValid) {
         return res.status(400).json({ error: 'Phone number is not valid' })
     }
 
