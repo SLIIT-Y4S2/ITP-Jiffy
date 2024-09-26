@@ -1,11 +1,13 @@
 const passport = require("passport");
 const express = require('express');
 const { loginUser } = require("../controllers/userController");
+const { googleRateLimiter } = require("../rate-limiter");
 
 const router = express.Router()
 
 router.get(
     "/google",
+    googleRateLimiter,
     passport.authenticate("google", {
       // To authenticate using google to get the code
       scope: ["profile", "email"],

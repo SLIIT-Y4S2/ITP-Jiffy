@@ -12,6 +12,7 @@ const {
     adminResetPassword,
     getAccountUsage
 } = require('../controllers/userController')
+const { normalRateLimiter } = require('../rate-limiter')
 const requireEmployee = require('../middleware/requireEmployee')
 
 const router = express.Router()
@@ -44,7 +45,7 @@ router.patch('/reset-password/:id', resetPassword)
 router.patch('/super-reset-password/:id', adminResetPassword)
 
 // login route
-router.post('/login', loginUser)
+router.post('/login', normalRateLimiter, loginUser)
 
 // signup route
 router.post('/signup', signupUser)

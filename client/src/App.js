@@ -116,6 +116,7 @@ import MachineReportPage from "./pages/dashboard/machineManagement/MachineReport
 import FactoryOverviewPage from "./pages/dashboard/factoryManagement/OverviewFactoryPage";
 import GoogleOAuth from './pages/auth/GoogleOAuth.js';
 import Cookies from 'js-cookie';
+import RequestDenied from './pages/RequestDenied.js';
 
 function App() {
     if(Cookies.get("cookie-session-user")){
@@ -142,6 +143,10 @@ function App() {
                 {/* Google OAuth Routes */}
                 <Route path="/auth/google" element={<GoogleOAuth />} />
 
+                {/* Rate limiting */}
+                <Route path="/request-denied" element={Cookies.get("rateLimit") ? <RequestDenied error={Cookies.get("rateLimit")} />:<Navigate to='/login-redirect'/>} />
+           
+            
                 <Route path="/login" element={!localStorage.getItem('user')? <LoginPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/signup" element={!localStorage.getItem('user')? <RegisterPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/account" element={localStorage.getItem('user')? <AccountPage />:<Navigate to='/login-redirect'/>}/>
