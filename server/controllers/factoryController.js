@@ -8,8 +8,8 @@ const createFactory = async (req, res) => {
         return res.status(400).json({ error: 'Factory ID already exists.' })
     }
 
-    if (fId.length < 6) {
-        return res.status(400).json({ error: 'Factory ID must include atleast 6 characters. Eg: XXX000' })
+    if (typeof fId !== 'string' || fId.length < 6) {
+        return res.status(400).json({ error: 'Factory ID must include at least 6 characters and be a string. Eg: XXX000' })
     }
 
     if (numOfEmployees < 0) {
@@ -64,8 +64,8 @@ const updateFactory = async (req, res) => {
         return res.status(400).json({ error: 'All fields must be filled.' })
     }
 
-    if (fId.length < 6) {
-        return res.status(400).json({ error: 'Factory ID must include atleast 6 characters. Eg: XXX000' })
+    if (typeof fId !== 'string' || fId.length < 6) {
+        return res.status(400).json({ error: 'Factory ID must include at least 6 characters and be a string. Eg: XXX000' })
     }
 
     if (numOfEmployees < 0) {

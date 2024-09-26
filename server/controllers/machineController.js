@@ -12,8 +12,8 @@ const createMachine = async (req, res) => {
         return res.status(400).json({ error: 'Machine ID already exists.' })
     }
 
-    if (mId.length < 6) {
-        return res.status(400).json({ error: 'Machine ID must include atleast 6 characters. Eg: XXX000' })
+    if (typeof mId !== 'string' || mId.length < 6) {
+        return res.status(400).json({ error: 'Machine ID must be a string and include at least 6 characters. Eg: XXX000' })
     }
 
     if (maxRunningHrs < 50) {
@@ -70,8 +70,8 @@ const updateMachine = async (req, res) => {
         return res.status(400).json({ error: 'All fields must be filled.' })
     }
     
-    if (mId.length < 5) {
-        return res.status(400).json({ error: 'Machine ID must include atleast 5 characters. Eg: XXX00' })
+    if (typeof mId !== 'string' || mId.length < 5) {
+        return res.status(400).json({ error: 'Machine ID must be a string and include atleast 5 characters. Eg: XXX00' })
     }
     
     if (maxRunningHrs < 50) {
