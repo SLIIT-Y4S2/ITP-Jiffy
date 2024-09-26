@@ -298,7 +298,7 @@ const loginUser = async (req, res) => {
 
         if(req.user){
             res.cookie('cookie-session-user', JSON.stringify({ id, email, token, authType: "google" }));
-            res.redirect("http://localhost:3000/account");
+            res.redirect("https://localhost:3000/account");
         }else{
             res.status(200).json({ id, email, token })
         }

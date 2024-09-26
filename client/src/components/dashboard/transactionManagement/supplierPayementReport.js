@@ -8,7 +8,7 @@ function SupplierPaymentReport() {
     const [PaidData, setPaidData] = useState([]);
 
     useEffect(() => {
-            axios.get(`http://localhost:5000/api/supplier-payment/`)
+            axios.get(`https://localhost:5000/api/supplier-payment/`)
             .then((getData)=>{
               setPaidData(getData.data);
             })         

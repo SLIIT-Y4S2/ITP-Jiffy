@@ -17,7 +17,7 @@ router.get(
   // Callback route for google to redirect to
 router.get(
   "/google/redirect",
-  passport.authenticate("google", { failureRedirect: "http://localhost:3000/login-redirect" }), // To fetch data using the code
+  passport.authenticate("google", { failureRedirect: "https://localhost:3000/login-redirect" }), // To fetch data using the code
   loginUser
 );
 

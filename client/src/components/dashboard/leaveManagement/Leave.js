@@ -63,7 +63,7 @@ function Leave() {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/leaves/' + id, {
+    const response = await fetch('https://localhost:5000/api/leaves/' + id, {
       method: 'PATCH',
       body: JSON.stringify({
         description: description,
@@ -96,7 +96,7 @@ function Leave() {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/leaves/' + id, {
+    const response = await fetch('https://localhost:5000/api/leaves/' + id, {
       method: 'DELETE'
     })
     const json = await response.json()

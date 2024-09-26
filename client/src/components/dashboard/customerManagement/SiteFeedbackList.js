@@ -46,7 +46,7 @@ function Customers() {
 
   const handleDeleteSubmit = async (e) => {
 
-    const response = await fetch('http://localhost:5000/api/site-feedbacks/' + e, {
+    const response = await fetch('https://localhost:5000/api/site-feedbacks/' + e, {
       method: 'DELETE'
     })
     const json = await response.json()
@@ -93,7 +93,7 @@ function Customers() {
   }, [])
 
   const handlePublicUpdateSubmit = async (e) => {
-    const response = await fetch('http://localhost:5000/api/site-feedbacks/public/', {
+    const response = await fetch('https://localhost:5000/api/site-feedbacks/public/', {
       method: 'PATCH',
       body: JSON.stringify({
         id: e
@@ -116,7 +116,7 @@ function Customers() {
   }
 
   const handlePrivateUpdateSubmit = async (e) => {
-    const response = await fetch('http://localhost:5000/api/site-feedbacks/private/', {
+    const response = await fetch('https://localhost:5000/api/site-feedbacks/private/', {
       method: 'PATCH',
       body: JSON.stringify({
         id: e

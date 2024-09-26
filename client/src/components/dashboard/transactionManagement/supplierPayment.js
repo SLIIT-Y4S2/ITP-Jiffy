@@ -9,7 +9,7 @@ function SupplierPayment() {
     const [paidData, setPaidData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/v9/supplierOrder/unpaid/`)
+        axios.get(`https://localhost:5000/api/v9/supplierOrder/unpaid/`)
         .then((getData)=>{
           setApiData(getData.data);
         })         
@@ -19,7 +19,7 @@ function SupplierPayment() {
     
 
       useEffect(() => {
-        axios.get(`http://localhost:5000/api/supplier-payment/`)
+        axios.get(`https://localhost:5000/api/supplier-payment/`)
         .then((getData)=>{
           setPaidData(getData.data);
         })         

@@ -26,7 +26,7 @@ export default function ShoppingCart() {
 
 
     useEffect(() => {
-        Axios.get(`http://localhost:5000/api/v5/Cart/getAll/${customer_id}`)
+        Axios.get(`https://localhost:5000/api/v5/Cart/getAll/${customer_id}`)
             .then((getData) => {
                 setApiData(getData.data);
             })
@@ -39,7 +39,7 @@ export default function ShoppingCart() {
 
     //Deleting from cart
     const onDelete = (id) => {
-        axios.delete(`http://localhost:5000/api/v5/Cart/delete/${id}/${customer_id}`)
+        axios.delete(`https://localhost:5000/api/v5/Cart/delete/${id}/${customer_id}`)
             .then(() => {
                 console.log(customer_id)
 
