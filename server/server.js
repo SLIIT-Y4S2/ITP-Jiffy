@@ -50,7 +50,10 @@ app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
 })
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}))
 
 // routes
 app.use('/api/users', userRoutes)
