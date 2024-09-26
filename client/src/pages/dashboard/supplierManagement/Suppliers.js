@@ -6,6 +6,7 @@ import SupplierTable from "../../../components/dashboard/supplierManagement/Supp
 import Sidebar from "../../../components/dashboard/Sidebar";
 import SearchBar from "../../../components/dashboard/supplierManagement/SearchBar";
 import { Link } from "react-router-dom";
+import apiFetch from "../../../services/Api";
 
 function Suppliers() {
 
@@ -20,7 +21,7 @@ function Suppliers() {
     useEffect(() => {
 
         const fetchAllSuppliers = async () => {
-            const response = await fetch("/api/suppliers");
+            const response = await apiFetch("/api/suppliers");
             const json = await response.json();
 
             if (response.ok) {

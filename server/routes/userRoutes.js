@@ -13,14 +13,15 @@ const {
     getAccountUsage
 } = require('../controllers/userController')
 const { normalRateLimiter } = require('../rate-limiter')
+const requireEmployee = require('../middleware/requireEmployee')
 
 const router = express.Router()
 
 // GET all users
-router.get('/', getUsers)
+router.get('/',requireEmployee, getUsers)
 
 // GET inactive users
-router.get('/old-users', getOldUsers)
+router.get('/old-users',requireEmployee, getOldUsers)
 
 // GET account usage 
 router.get('/usage', getAccountUsage)
@@ -29,10 +30,10 @@ router.get('/usage', getAccountUsage)
 router.get('/:id', getUser)
 
 // POST a new user
-router.post('/', createUser)
+router.post('/',requireEmployee, createUser)
 
 // DELETE a user
-router.delete('/:id', deleteUser)
+router.delete('/:id',requireEmployee, deleteUser)
 
 // UPDATE a user
 router.patch('/:id', updateUser)

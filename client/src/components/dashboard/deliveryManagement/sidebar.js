@@ -7,7 +7,7 @@ function Sidebar() {
     <ul className="sidebar-nav" id="sidebar-nav">
 
       <li className="nav-item">
-        <a href="http://localhost:3000/dashboardHome" className="nav-link collapsed">
+        <a href="https://localhost:3000/dashboardHome" className="nav-link collapsed">
           <i className="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -20,18 +20,18 @@ function Sidebar() {
         </a>
         <ul id="components-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="http://localhost:3000/deliverymanager">
+            <a href="https://localhost:3000/deliverymanager">
               <i className="bi bi-circle"></i><span>Packaged</span>
             </a>
           </li>
           <li>
-            <a href="http://localhost:3000/delivering">
+            <a href="https://localhost:3000/delivering">
               <i className="bi bi-circle"></i><span>Delivering</span>
             </a>
           </li>
 
           <li>
-            <a href="http://localhost:3000/Completed">
+            <a href="https://localhost:3000/Completed">
               <i className="bi bi-circle"></i><span>Completed</span>
             </a>
           </li>

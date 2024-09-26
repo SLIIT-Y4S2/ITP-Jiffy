@@ -145,7 +145,7 @@ const createUser = async (req, res) => {
     if (!validator.isEmail(email)) {
         return res.status(400).json({ error: 'Email is not valid', errorPosition: '2' })
     }
-    if (await User.findOne({ email })) {
+    if (await User.findOne({ email: { $eq: email } })) {
         return res.status(400).json({ error: 'Email already in use', errorPosition: '3' })
     }
     if (phone.length != 10 || !isPhoneValid) {
@@ -169,6 +169,41 @@ const createUser = async (req, res) => {
     }
 
 }
+
+// create new user for google oauth process
+let plainPassword;
+const createGoogleUser = async (user) => {
+    let returnedUser;
+
+    const existingUsers = await User.find();
+    const existingUser = (await Promise.all(existingUsers.map(async (existingUser) => { 
+        const isExists = await bcrypt.compare(user.password, existingUser.password);
+        return isExists ? existingUser : null;
+    }))).find(user => user !== null);
+
+      if (!existingUser) {
+        const salt = await bcrypt.genSalt(10)
+        const hash = await bcrypt.hash(user.password, salt)
+        const newUser = await new User({...user, password: hash}).save();
+        returnedUser = newUser;
+        console.info("User saved");
+      } else {
+        returnedUser = existingUser;
+        console.info("User already exists");
+      }
+
+    // Add plainPassword property to returnedUser
+    returnedUser = returnedUser.toObject();
+    plainPassword = user.password;
+    return {...returnedUser, plainPassword};
+};
+
+
+const getGoogleUserById = async (id) => {
+    let user = (await User.findById(id));
+    user = user.toObject();
+    return {...user, plainPassword};
+};
 
 // delete a user
 const deleteUser = async (req, res) => {
@@ -199,6 +234,11 @@ const updateUser = async (req, res) => {
     if (!name || !email || !address || !phone) {
         return res.status(400).json({ error: 'All fields must be filled' })
     }
+
+    if(typeof name!='string' || typeof email!='string' || typeof address!='string' || typeof phone!='string'){
+        return res.status(400).json({ error: 'Invalid data type' })
+    }
+
     if (!validator.isEmail(req.body.email)) {
         return res.status(400).json({ error: 'Email is not valid' })
     }
@@ -210,17 +250,17 @@ const updateUser = async (req, res) => {
         return res.status(404).json({ error: 'User does not exsist' })
     }
 
-    var user = await User.findOne({ email })
+    var user = await User.findOne({ email: { $eq: email } })
 
     if (user._id != id) {
         return res.status(400).json({ error: 'Email already in use' })
     }
 
     user = await User.findOneAndUpdate({ _id: id }, {
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address,
-        phone: req.body.phone
+        name,
+        email,
+        address,
+        phone
     })
 
     if (!user) {
@@ -235,16 +275,33 @@ const updateUser = async (req, res) => {
 
 // login
 const loginUser = async (req, res) => {
-    const { email, password } = req.body
+    let email = null;
+    let password = null;
+    let plainPassword = null;
+    let user = null;
 
     try {
-        const user = await User.login(email, password)
+        if(req.user){
+            email = req.user.email;
+            plainPassword = req.user.plainPassword;
+            user = await User.login(email, plainPassword)    
+        } else {
+            email = req.body.email;
+            password = req.body.password;
 
+            user = await User.login(email, password)
+        }
+    
         // create a token
         const token = createToken(user._id)
         const id = user._id
 
-        res.status(200).json({ id, email, token })
+        if(req.user){
+            res.cookie('cookie-session-user', JSON.stringify({ id, email, token, authType: "google" }));
+            res.redirect("http://localhost:3000/account");
+        }else{
+            res.status(200).json({ id, email, token })
+        }
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -360,5 +417,7 @@ module.exports = {
     signupUser,
     resetPassword,
     adminResetPassword,
-    getAccountUsage
+    getAccountUsage,
+    createGoogleUser,
+    getGoogleUserById
 }

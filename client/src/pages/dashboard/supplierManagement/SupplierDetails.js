@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Header from "../../../components/dashboard/Header";
 import Sidebar from "../../../components/dashboard/Sidebar";
 import SupplierForm from "../../../components/dashboard/supplierManagement/SupplierForm";
+import apiFetch from "../../../services/Api";
 
 
 
@@ -27,7 +28,7 @@ function SupplierDetails() {
     //*Dispaly current suppliers details when component loads
     useEffect(() => {
         const fetchSupplier = async () => {
-            const response = await fetch(`/api/suppliers/${id}`);
+            const response = await apiFetch(`/api/suppliers/${id}`);
             const json = await response.json();
 
             if (response.ok) {

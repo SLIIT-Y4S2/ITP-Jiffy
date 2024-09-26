@@ -119,6 +119,14 @@ import Cookies from 'js-cookie';
 import RequestDenied from './pages/RequestDenied.js';
 
 function App() {
+    if(Cookies.get("cookie-session-user")){
+        localStorage.setItem('user', Cookies.get("cookie-session-user"));
+        Cookies.remove("cookie-session-user");
+    }
+    if(!Cookies.get("cookie-session") && JSON.parse(localStorage.getItem('user'))?.hasOwnProperty('authType')){
+        localStorage.removeItem('user');
+    }
+
     return(
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <ToastContainer/>

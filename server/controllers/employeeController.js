@@ -43,7 +43,7 @@ const createUser = async (req, res) => {
     if (!validator.isEmail(email)) {
         return res.status(400).json({ error: 'Email is not valid' })
     }
-    if(await Employee.findOne({email})){
+    if(await Employee.findOne({ email: { $eq: email } })){
         return res.status(400).json({ error: 'Email already in use' })
     }
     if (phone.length != 10 || !isPhoneValid) {
@@ -101,7 +101,7 @@ const updateUser = async (req, res) => {
         return res.status(404).json({ error: 'User does not exsist' })
     }
 
-    const employee = await Employee.findOneAndUpdate({ _id: id }, {
+    const employee = await Employee.findOneAndUpdate({ _id: { $eq: id } }, {
         name: req.body.name,
         email: req.body.email,
         dob: req.body.dob,
