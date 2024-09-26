@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import apiFetch from '../../../services/Api';
 
 function Customers() {
 
@@ -35,7 +36,7 @@ function Customers() {
 
     const user = { name, email, address, phone, password }
 
-    const response = await fetch('/api/users', {
+    const response = await apiFetch('/api/users', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -64,7 +65,7 @@ function Customers() {
 
   const handleDeleteSubmit = async (e) => {
 
-    const response = await fetch('http://localhost:5000/api/users/' + e, {
+    const response = await apiFetch('http://localhost:5000/api/users/' + e, {
       method: 'DELETE'
     })
     const json = await response.json()
@@ -84,7 +85,7 @@ function Customers() {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      const response = await fetch(`/api/users`)
+      const response = await apiFetch(`/api/users`)
       const json = await response.json()
       console.log(json)
       if (response.ok) {

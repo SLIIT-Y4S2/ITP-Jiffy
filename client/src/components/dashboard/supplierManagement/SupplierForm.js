@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import apiFetch from "../../../services/Api";
 
 function SupplierForm(props) {
     const { id } = useParams();
@@ -153,7 +154,7 @@ function SupplierForm(props) {
         e.preventDefault();
 
         if (isValid()) {
-            const response = await fetch("/api/suppliers", {
+            const response = await apiFetch("/api/suppliers", {
                 method: "POST",
                 body: JSON.stringify(supplier),
                 headers: {
@@ -191,7 +192,7 @@ function SupplierForm(props) {
         e.preventDefault();
 
         if (isValid()) {
-            const response = await fetch(`/api/suppliers/${id}`, {
+            const response = await apiFetch(`/api/suppliers/${id}`, {
                 method: "PUT",
                 body: JSON.stringify(supplier),
                 headers: {
