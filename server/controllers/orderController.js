@@ -59,7 +59,7 @@ const createOrder = async (req, res) => {
 
     });
     await order.save();
-    res.send(order);
+    res.json(order);
 }
 
 

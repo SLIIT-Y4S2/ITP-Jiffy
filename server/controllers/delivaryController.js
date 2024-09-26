@@ -16,7 +16,7 @@ const delivaryCreate = async (req, res) => {
 
     await delivary.save();
     
-    res.send(delivary);
+    res.json(delivary);
 };
 
 

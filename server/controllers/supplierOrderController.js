@@ -35,8 +35,8 @@ const getUnpaidSupplierOrders = async (req, res) => {
 const getOneSupplierOrder = async (req, res) => {
 
     const order = await SupplierOrder.findById(req.params.id);
-
-    res.send(order);
+    
+    res.json(order);
 }
 
 //Delete an order
@@ -90,10 +90,10 @@ const updateSupplierOrderPayment = async (req, res) => {
             unit: { $eq: req.body.unit },
             orderStatus: { $eq: req.body.orderStatus }
         },
-        { new: true }
-    );
-    sendEmail(req.body.email, 'Payment completed', `We have paid for your ${req.body.rawMaterial}`)
-    res.send(payment);
+        {new:true}
+        );
+        sendEmail(req.body.email, 'Payment completed', `We have paid for your ${req.body.rawMaterial}`)
+        res.json(payment);
 };
 
 

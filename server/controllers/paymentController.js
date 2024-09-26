@@ -17,13 +17,13 @@ const createPayment = async (req, res) => {
     
     await payment.save();
     sendEmail(req.body.email, 'Payment successfull', 'Your payment was completed successfully.')
-    res.send(payment);
+    res.json(payment);
 };
 
 const getPayment = async (req, res) => {
     const payment = await Payment.findOne({Customer_id:req.params.cusID})
     
-    res.send(payment);
+    res.json(payment);
     
 };
 
@@ -41,12 +41,12 @@ const updatePayment = async (req, res) => {
         {new:true}
         );
         sendEmail(req.body.email, 'Payment successfull', 'Your payment was completed successfully.')
-        res.send(payment);
+        res.json(payment);
 };
 
 const removePayment =async (req, res) => {
     const payment = await Payment.findOneAndDelete({Customer_id:req.params.cusID})
-    res.send(payment);
+    res.json(payment);
 };
 module.exports = { 
     createPayment,

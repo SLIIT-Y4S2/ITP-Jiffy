@@ -14,7 +14,7 @@ const insert = async (req, res) => {
 
     await history.save();
 
-    res.send(history);
+    res.json(history);
 };
 
 const getIncomeOverview = async (req, res) => {
@@ -77,7 +77,7 @@ const getIncomeOverview = async (req, res) => {
 
 
   
-    res.send(sendData);
+    res.json(sendData);
 
 
 };
