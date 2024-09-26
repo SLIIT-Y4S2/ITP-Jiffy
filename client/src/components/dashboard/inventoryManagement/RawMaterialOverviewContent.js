@@ -46,7 +46,7 @@ function RawMaterialOverviewContent(){
           <div className="alert alert-success alert-dismissible fade show" role="alert">
                 <i className="bi bi-check-circle me-1"></i>
                 Successfully deleted
-                <a href="http://localhost:3000/inventory-raw-materials-page"><button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
+                <a href="https://localhost:3000/inventory-raw-materials-page"><button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
               </div>
         )
 

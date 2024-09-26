@@ -1,5 +1,5 @@
 function LoginRedirect() {
-    window.location.href = 'http://localhost:3000/login';
+    window.location.href = 'https://localhost:3000/login';
     return null;
 }
 

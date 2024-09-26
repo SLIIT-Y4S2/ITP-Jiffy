@@ -32,7 +32,7 @@ function Breadcrumb() {
                         </div>
                         <div className="ltn__breadcrumb-list">
                             <ul>
-                                <li><a href="http://localhost:3000/">Home</a></li>
+                                <li><a href="https://localhost:3000/">Home</a></li>
                                 <li>{path}</li>
                             </ul>
                         </div>
