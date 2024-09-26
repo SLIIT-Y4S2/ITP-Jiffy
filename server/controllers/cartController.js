@@ -38,7 +38,7 @@ const getAllCart = async (req, res) => {
 
 const updateCart= async (req, res) => {
     const cart = await CART.findOneAndUpdate(
-        {Customer_id:req.params.customerID , Item_number:req.params.productID},
+        {Customer_id: { $eq: req.params.customerID }, Item_number: { $eq: req.params.productID }},
         {
             customer_id: req.body.customer_id,
             Item_number : req.body.Item_number,

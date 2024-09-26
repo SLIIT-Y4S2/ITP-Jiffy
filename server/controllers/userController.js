@@ -145,7 +145,7 @@ const createUser = async (req, res) => {
     if (!validator.isEmail(email)) {
         return res.status(400).json({ error: 'Email is not valid', errorPosition: '2' })
     }
-    if (await User.findOne({ email })) {
+    if (await User.findOne({ email: { $eq: email } })) {
         return res.status(400).json({ error: 'Email already in use', errorPosition: '3' })
     }
     if (phone.length != 10 || !isPhoneValid) {
@@ -199,6 +199,11 @@ const updateUser = async (req, res) => {
     if (!name || !email || !address || !phone) {
         return res.status(400).json({ error: 'All fields must be filled' })
     }
+
+    if(typeof name!='string' || typeof email!='string' || typeof address!='string' || typeof phone!='string'){
+        return res.status(400).json({ error: 'Invalid data type' })
+    }
+
     if (!validator.isEmail(req.body.email)) {
         return res.status(400).json({ error: 'Email is not valid' })
     }
@@ -210,17 +215,17 @@ const updateUser = async (req, res) => {
         return res.status(404).json({ error: 'User does not exsist' })
     }
 
-    var user = await User.findOne({ email })
+    var user = await User.findOne({ email: { $eq: email } })
 
     if (user._id != id) {
         return res.status(400).json({ error: 'Email already in use' })
     }
 
     user = await User.findOneAndUpdate({ _id: id }, {
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address,
-        phone: req.body.phone
+        name,
+        email,
+        address,
+        phone
     })
 
     if (!user) {

@@ -8,7 +8,7 @@ const createMachine = async (req, res) => {
         return res.status(400).json({ error: 'All fields must be filled.' })
     }
 
-    if (await Machine.findOne({ mId })) {
+    if (await Machine.findOne({ mId: { $eq: mId } })) {
         return res.status(400).json({ error: 'Machine ID already exists.' })
     }
 
@@ -33,7 +33,7 @@ const getAllMachines = async (req, res) => {
     const factoryId = req.query.factory;
  
     if(factoryId){
-        const machines = await Machine.find({mFactory: factoryId});
+        const machines = await Machine.find({mFactory: { $eq: factoryId }});
         res.send(machines);
     }else{
        const  machines = await Machine.find()
@@ -78,15 +78,15 @@ const updateMachine = async (req, res) => {
         return res.status(400).json({ error: 'Maximum running hours cannot be less than 50.' })
     }
     
-    const machine = await Machine.findByIdAndUpdate({ _id: id }, {
-            mId: req.body.mId,
-            //mName: req.body.mName,
-            maxRunningHrs: req.body.maxRunningHrs,
-            product: req.body.product,
-            mFactory: req.body.mFactory,
-            installedDate: req.body.installedDate,
-            totalProductions: req.body.totalProductions,
-            totalRunningHrs: req.body.totalRunningHrs
+    const machine = await Machine.findByIdAndUpdate({ _id: { $eq: id } }, {
+            mId: { $eq: req.body.mId },
+            //mName: { $eq: req.body.mName 
+            maxRunningHrs: { $eq: req.body.maxRunningHrs },
+            product: { $eq: req.body.product },
+            mFactory: { $eq: req.body.mFactory },
+            installedDate: { $eq: req.body.installedDate },
+            totalProductions: { $eq: req.body.totalProductions },
+            totalRunningHrs: { $eq: req.body.totalRunningHrs },
         })
     
     if (!machine) {

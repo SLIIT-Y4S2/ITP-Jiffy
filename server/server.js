@@ -48,6 +48,9 @@ const rawDataRoutes = require('./routes/rawDataRoutes')
 
 const mongoose = require('mongoose')
 const cors = require('cors')
+// To prevent information exposure
+const helmet = require('helmet');
+
 // express app
 const app = express()
 
@@ -60,7 +63,16 @@ app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
 })
-app.use(cors())
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}))
+app.use(helmet());
+
+// deserialize jwt token (Preventing Unauthorized Access)
+const deserializeToken = require('./middleware/deserializeToken.js');
+app.use(deserializeToken);
 
 // routes
 app.use('/api/users', userRoutes)
