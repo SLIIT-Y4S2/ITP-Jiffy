@@ -12,13 +12,13 @@ const createCart = async (req, res) => {
     });
 
     await cart.save();
-    res.send(cart);
+    res.json(cart);
 };
 
 
 const getCart = async (req, res) => {
     const cart = await CART.find({customer_id:req.params.cID , Item_number:req.params.pID});
-    res.send(cart);
+    res.json(cart);
 }
 
 const getAllCart = async (req, res) => {
@@ -32,7 +32,7 @@ const getAllCart = async (req, res) => {
     for (let i = 0; i < cart.length; i++) {
         final.push({product_id:product[i]._id,product_name:product[i].product_name, unit_price:product[i].unit_price, quantity:cart[i].quantity})
     }
-    res.send(final);
+    res.json(final);
 
 }
 
@@ -47,13 +47,13 @@ const updateCart= async (req, res) => {
         {new:true}
     );
 
-    res.send(cart);
+    res.json(cart);
 };
 
 //Delete from cart
 const deleteCart =async (req, res) => {
     const cart = await CART.findOneAndDelete({customer_id:req.params.customerID, Item_number:req.params.productID})
-    res.send(cart);
+    res.json(cart);
 };
 
 module.exports = { 

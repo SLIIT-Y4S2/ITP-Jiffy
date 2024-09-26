@@ -94,7 +94,7 @@ const updateQuantity = async(req, res)=>{
     {new:true}
     );
 
-    res.send(product);
+    res.json(product);
 }
 
 module.exports = { 

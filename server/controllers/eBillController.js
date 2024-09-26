@@ -71,7 +71,7 @@ const getCartTotal = async (req, res) => {
 
 
    
-    res.send(final);
+    res.json(final);
     
 };
 
@@ -82,7 +82,7 @@ const getBuyNowTotal = async (req, res) => {
     var Quantity=req.params.qty;
     var Price = product.unit_price*Quantity;
     bill.push({product_ID: product._id , product_Name:product.product_name , quantity: Quantity ,product_price: Price,total_Amount:Price});
-    res.send(bill);
+    res.json(bill);
 }
 
 

@@ -14,7 +14,7 @@ const newSupplierPayment = async (req, res) => {
         fileName: req.body.fileName
         
     });await newSupplierPayment.save();
-    res.send(newSupplierPayment);
+    res.json(newSupplierPayment);
 
  /*   newSupplierPayment
         .save()

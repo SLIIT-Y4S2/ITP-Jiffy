@@ -39,19 +39,19 @@ const createFactory = async (req, res) => {
 // Get all Factories
 const getAllFactories = async (req, res) => {
     const factory = await Factory.find();
-    res.send(factory);
+    res.json(factory);
 }
 
 // Get a single Factory by its ID
 const getFactory = async (req, res) => {
     const factory = await Factory.findById(req.params.id);
-    res.send(factory);
+    res.json(factory);
 }
 
 // Delete a Factory
 const deleteFactory = async (req, res) => {
     const factory = await Factory.findByIdAndDelete(req.params.id);
-    res.send(factory);
+    res.json(factory);
 }
 
 // Update a Factory

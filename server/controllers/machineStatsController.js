@@ -29,7 +29,7 @@ const createMachineStats = async (req, res) => {
 // Get all MachineStats
 const getAllMachineStats = async (req, res) => {
     const machineStats = await MachineStats.find();
-    res.send(machineStats);
+    res.json(machineStats);
 }
 
 

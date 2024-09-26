@@ -13,7 +13,7 @@ const Create = async (req, res) => {
     });
 
     await orderedProduct.save();
-    res.send(orderedProduct);
+    res.json(orderedProduct);
 };
 
 //Get product by order ID

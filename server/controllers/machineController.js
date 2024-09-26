@@ -34,10 +34,10 @@ const getAllMachines = async (req, res) => {
  
     if(factoryId){
         const machines = await Machine.find({mFactory: { $eq: factoryId }});
-        res.send(machines);
+        res.json(machines);
     }else{
        const  machines = await Machine.find()
-       res.send(machines);
+       res.json(machines);
     }
    
 }
@@ -45,19 +45,19 @@ const getAllMachines = async (req, res) => {
 // Get Machines by factory IDs
 const getMachinesByFId = async (req, res) => {
     const machine = await Machine.findByFId(req.params.mFactory);
-    res.send(machine);
+    res.json(machine);
 }
 
 // Get a single Machine by its ID
 const getMachine = async (req, res) => {
     const machine = await Machine.findById(req.params.id);
-    res.send(machine);
+    res.json(machine);
 }
 
 // Delete a Machine
 const deleteMachine = async (req, res) => {
     const machine = await Machine.findByIdAndDelete(req.params.id);
-    res.send(machine);
+    res.json(machine);
 } 
 
 // Update a Machine
