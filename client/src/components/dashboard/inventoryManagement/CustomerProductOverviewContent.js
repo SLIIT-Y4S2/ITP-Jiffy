@@ -125,7 +125,7 @@ function CustomerProductOverviewContent(){
        console.log(Item_number)
        console.log(quantity)
      
-       Axios.get(`http://localhost:5000/api/v5/Cart/get/${id}/${customer_id}`)
+       Axios.get(`https://localhost:5000/api/v5/Cart/get/${id}/${customer_id}`)
        .then((getData)=>{
            setTempData(getData.data);
            console.log(getData.data);
@@ -133,7 +133,7 @@ function CustomerProductOverviewContent(){
    
            if(getData.data.length===0) {
        
-               Axios.post('http://localhost:5000/api/v5/Cart/insert',
+               Axios.post('https://localhost:5000/api/v5/Cart/insert',
                {
                    customer_id, Item_number,quantity
                    
@@ -146,7 +146,7 @@ function CustomerProductOverviewContent(){
            }
            else{
                
-               Axios.put(`http://localhost:5000/api/v5/Cart/update/${id}/${customer_id}`,
+               Axios.put(`https://localhost:5000/api/v5/Cart/update/${id}/${customer_id}`,
                {
                    customer_id, Item_number,quantity
                }

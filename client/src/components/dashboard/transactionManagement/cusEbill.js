@@ -194,7 +194,7 @@ function CusEbill() {
       if (paymentData.length === 0) {
 
 
-        await axios.post('http://localhost:5000/api/v3/payment/',
+        await axios.post('https://localhost:5000/api/v3/payment/',
           {
             customer_id, number, name, expiry, cvc, email
           }
@@ -203,13 +203,13 @@ function CusEbill() {
       else {
     
         var Hname = name;
-        await axios.put(`http://localhost:5000/api/v3/payment/updatePayment/${cus_id}`,
+        await axios.put(`https://localhost:5000/api/v3/payment/updatePayment/${cus_id}`,
           {
             number, Hname, expiry, cvc, email
           }
         )
       }
-      await axios.post(`http://localhost:5000/api/v4/Delevery/`,
+      await axios.post(`https://localhost:5000/api/v4/Delevery/`,
         {
           recieverName, address, phoneNumber, orderID
         }
@@ -220,7 +220,7 @@ function CusEbill() {
       var PaymentStatuss = "Paid"
       var delevary_status = "Not shipped";
 
-      await axios.post(`http://localhost:5000/api/v6/orders/`,
+      await axios.post(`https://localhost:5000/api/v6/orders/`,
         {
           cus_id, status, delevary_status, PaymentStatuss, recieverName, address, phoneNumber
         }
@@ -235,13 +235,13 @@ function CusEbill() {
           var product_id = data.product_ID;
           var quantity = data.quantity;
           var product_Name = data.product_Name;
-          axios.post('http://localhost:5000/api/v7/orderedProduct/create',
+          axios.post('https://localhost:5000/api/v7/orderedProduct/create',
             {
               order_ID, product_id, quantity, product_Name
             }
           ).then(async () => {
 
-            axios.get(`http://localhost:5000/api/inventoryProducts/${product_id}`)
+            axios.get(`https://localhost:5000/api/inventoryProducts/${product_id}`)
               .then((getData) => {
 
 
@@ -250,14 +250,14 @@ function CusEbill() {
 
                 console.log(tempQuantity)
 
-                axios.patch(`http://localhost:5000/api/inventoryProducts/updateQTY/${product_id}`,
+                axios.patch(`https://localhost:5000/api/inventoryProducts/updateQTY/${product_id}`,
                   {
                     tempQuantity
                   }
                 ).then(() => {
-                  axios.delete(`http://localhost:5000/api/v5/Cart/delete/${product_id}/${cus_id}`)
+                  axios.delete(`https://localhost:5000/api/v5/Cart/delete/${product_id}/${cus_id}`)
                     .then(() => {
-                      axios.post('http://localhost:5000/api/v8/incomeHistory/insert',
+                      axios.post('https://localhost:5000/api/v8/incomeHistory/insert',
                         {
                           order_ID, total
                         })
@@ -302,8 +302,8 @@ function CusEbill() {
 
   const fetchCartData = () => {
 
-    const billAPI = `http://localhost:5000/api/v1/eBill/getall/${user.id}`;
-    const paymentAPI = `http://localhost:5000/api/v3/payment/getPayment/${user.id}`;
+    const billAPI = `https://localhost:5000/api/v1/eBill/getall/${user.id}`;
+    const paymentAPI = `https://localhost:5000/api/v3/payment/getPayment/${user.id}`;
 
     const getBill = axios.get(billAPI)
     const getPayment = axios.get(paymentAPI);
@@ -327,8 +327,8 @@ function CusEbill() {
 
   const fetchBuyNowData = () => {
 
-    const billAPI = `http://localhost:5000/api/v1/eBill/getone/${id}/${qty}`;
-    const paymentAPI = `http://localhost:5000/api/v3/payment/getPayment/${user.id}`;
+    const billAPI = `https://localhost:5000/api/v1/eBill/getone/${id}/${qty}`;
+    const paymentAPI = `https://localhost:5000/api/v3/payment/getPayment/${user.id}`;
 
     const getBill = axios.get(billAPI)
     const getPayment = axios.get(paymentAPI);
@@ -352,7 +352,7 @@ function CusEbill() {
 
 
   const fetchUserDetails = () => {
-    axios.get(`http://localhost:5000/api/users/${user.id}`)
+    axios.get(`https://localhost:5000/api/users/${user.id}`)
       .then((getData) => {
         setUserData(getData.data);
         setRecieverNAme(getData.data.name);

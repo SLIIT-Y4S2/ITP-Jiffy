@@ -7,7 +7,7 @@ const ProductOrderUpdateForm = (ID) => {
 
     const handleUpdateSubmit = async (id) => {
 
-        const response = await fetch('http://localhost:5000/api/inventoryProductOrder/' + id, {
+        const response = await fetch('https://localhost:5000/api/inventoryProductOrder/' + id, {
 
             method: 'PATCH',
             body: JSON.stringify({

@@ -29,7 +29,7 @@ const googleRateLimiter = rateLimit({
     res.cookie("rateLimit", errorMessage, {
       maxAge: this.windowMs,
     });
-    res.redirect("http://localhost:3000/request-denied");
+    res.redirect("https://localhost:3000/request-denied");
   },
 });
 

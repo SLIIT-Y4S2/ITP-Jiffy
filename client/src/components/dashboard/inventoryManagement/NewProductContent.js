@@ -176,7 +176,7 @@ function NewProductContent() {
 
        data.append('image', fileData)
  
-       fetch("http://localhost:5000/single", {
+       fetch("https://localhost:5000/single", {
          method: "POST",
          body: data,
        }).then((result) => {

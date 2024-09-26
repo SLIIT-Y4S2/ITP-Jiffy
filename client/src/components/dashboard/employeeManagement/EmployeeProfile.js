@@ -72,7 +72,7 @@ function EmployeeProfile() {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/employees/' + id, {
+    const response = await fetch('https://localhost:5000/api/employees/' + id, {
       method: 'PATCH',
       body: JSON.stringify({
         name: name,
@@ -102,7 +102,7 @@ function EmployeeProfile() {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/employees/' + id, {
+    const response = await fetch('https://localhost:5000/api/employees/' + id, {
       method: 'DELETE'
     })
     const json = await response.json()

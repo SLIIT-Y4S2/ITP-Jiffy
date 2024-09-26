@@ -82,7 +82,7 @@ function CustomerAccount() {
     const handleUpdateSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await fetch('http://localhost:5000/api/users/' + user.id, {
+        const response = await fetch('https://localhost:5000/api/users/' + user.id, {
             method: 'PATCH',
             body: JSON.stringify({
                 name: name,
@@ -136,7 +136,7 @@ function CustomerAccount() {
     const handleUpdatePasswordSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await fetch('http://localhost:5000/api/users/reset-password/' + user.id, {
+        const response = await fetch('https://localhost:5000/api/users/reset-password/' + user.id, {
             method: 'PATCH',
             body: JSON.stringify({
                 currentPassword: currentPassword,
@@ -172,7 +172,7 @@ function CustomerAccount() {
     const [apiData, setApiData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/v3/payment/getPayment/${user.id}`)
+        axios.get(`https://localhost:5000/api/v3/payment/getPayment/${user.id}`)
             .then((getData) => {
                 setApiData(getData.data);
                 setNumber(getData.data.Card_Number)
@@ -200,7 +200,7 @@ function CustomerAccount() {
         e.preventDefault();
 
 
-        axios.delete(`http://localhost:5000/api/v3/payment/removePayment/${user.id}`)
+        axios.delete(`https://localhost:5000/api/v3/payment/removePayment/${user.id}`)
             .then(() => {
             })
             toast.success(`Payment details removed successfully`,{
@@ -323,7 +323,7 @@ function CustomerAccount() {
         e.preventDefault();
         const isValid = formValidation();
         if (isValid) {
-            axios.put(`http://localhost:5000/api/v3/payment/updatePayment/${user.id}`,
+            axios.put(`https://localhost:5000/api/v3/payment/updatePayment/${user.id}`,
                 {
                     number, Hname, expiry, cvc
                 }

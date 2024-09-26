@@ -36,7 +36,7 @@ function SupplierPaymentForm(props) {
    const {orderID,supplierID,historyID,Tdate,file} = useParams();
 
    useEffect(() => {
-    Axios.get(`http://localhost:5000/api/supplier-payment/getOne/${historyID}`)
+    Axios.get(`https://localhost:5000/api/supplier-payment/getOne/${historyID}`)
     .then((getData)=>{
       setHistoryData(getData.data);
       setamount(getData.data.amount);
@@ -56,7 +56,7 @@ function SupplierPaymentForm(props) {
 
        
 
-        Axios.get(`http://localhost:5000/api/suppliers/${supplierID}`)
+        Axios.get(`https://localhost:5000/api/suppliers/${supplierID}`)
         .then((getData)=>{
             setSupplierData(getData.data);
             setsupplierName(getData.data.companyName);
@@ -68,7 +68,7 @@ function SupplierPaymentForm(props) {
     },[])
 
     useEffect(()=>{
-        Axios.get(`http://localhost:5000/api/v9/supplierOrder/${orderID}`)
+        Axios.get(`https://localhost:5000/api/v9/supplierOrder/${orderID}`)
         .then((getData)=>{
             setPurchaseData(getData.data);
             setorderID(getData.data._id);

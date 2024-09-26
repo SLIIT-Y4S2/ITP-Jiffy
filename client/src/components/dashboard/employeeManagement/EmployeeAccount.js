@@ -75,7 +75,7 @@ function EmployeeAccount() {
     const handleUpdateSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await fetch('http://localhost:5000/api/employees/' + employee.id, {
+        const response = await fetch('https://localhost:5000/api/employees/' + employee.id, {
             method: 'PATCH',
             body: JSON.stringify({
                 name: name,

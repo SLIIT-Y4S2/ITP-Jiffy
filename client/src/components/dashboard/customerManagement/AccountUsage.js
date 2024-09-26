@@ -28,7 +28,7 @@ function AccountUsage() {
 
     const handleDeleteSubmit = async (e) => {
 
-        const response = await fetch('http://localhost:5000/api/users/' + e, {
+        const response = await fetch('https://localhost:5000/api/users/' + e, {
             method: 'DELETE'
         })
         const json = await response.json()

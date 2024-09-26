@@ -62,7 +62,7 @@ function CustomerProfile() {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/users/' + id, {
+    const response = await fetch('https://localhost:5000/api/users/' + id, {
       method: 'PATCH',
       body: JSON.stringify({
         name: name,
@@ -90,7 +90,7 @@ function CustomerProfile() {
   const handleUpdatePasswordSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/users/super-reset-password/' + id, {
+    const response = await fetch('https://localhost:5000/api/users/super-reset-password/' + id, {
       method: 'PATCH',
       body: JSON.stringify({
         email: customer.email,
@@ -117,7 +117,7 @@ function CustomerProfile() {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/users/' + id, {
+    const response = await fetch('https://localhost:5000/api/users/' + id, {
       method: 'DELETE'
     })
     const json = await response.json()

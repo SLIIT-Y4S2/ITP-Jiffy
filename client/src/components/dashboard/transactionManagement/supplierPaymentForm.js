@@ -43,7 +43,7 @@ function SupplierPaymentForm(props) {
         console.log("Aaaaaaaaaaaaaaaaaaaaa");
 
 
-        Axios.get(`http://localhost:5000/api/suppliers/${supplierID}`)
+        Axios.get(`https://localhost:5000/api/suppliers/${supplierID}`)
             .then((getData) => {
                 setSupplierData(getData.data);
                 setsupplierName(getData.data.companyName);
@@ -55,7 +55,7 @@ function SupplierPaymentForm(props) {
     }, [])
 
     useEffect(() => {
-        Axios.get(`http://localhost:5000/api/v9/supplierOrder/${orderID}`)
+        Axios.get(`https://localhost:5000/api/v9/supplierOrder/${orderID}`)
             .then((getData) => {
                 setPurchaseData(getData.data);
                 setorderID(getData.data._id);
@@ -74,7 +74,7 @@ function SupplierPaymentForm(props) {
 
         data.append('imageRecipt', fileData)
 
-        fetch("http://localhost:5000/singleRecipt", {
+        fetch("https://localhost:5000/singleRecipt", {
             method: "POST",
             body: data,
         }).then((result) => {
@@ -87,13 +87,13 @@ function SupplierPaymentForm(props) {
             console.log(error.message)
         })
 
-        await Axios.put(`http://localhost:5000/api/v9/supplierOrder/suporderupdate/${orderID}`,
+        await Axios.put(`https://localhost:5000/api/v9/supplierOrder/suporderupdate/${orderID}`,
             {
                 supplierId, rawMaterial, quantity, unit, orderStatus, email
             }
         )
 
-       await Axios.post('http://localhost:5000/api/supplier-payment/',
+       await Axios.post('https://localhost:5000/api/supplier-payment/',
             {
                 supplierName, supplierId, order_ID, amount, transactionDate, paymentReferenceNo, fileName
             }

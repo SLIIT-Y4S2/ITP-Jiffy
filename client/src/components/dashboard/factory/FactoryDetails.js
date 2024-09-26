@@ -69,7 +69,7 @@ function FactoryDetails() {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/factory/' + id, {
+    const response = await fetch('https://localhost:5000/api/factory/' + id, {
       method: 'PATCH',
       body: JSON.stringify({
         fId: fId,
