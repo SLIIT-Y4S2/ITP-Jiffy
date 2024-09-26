@@ -39,6 +39,13 @@ function LoginComponent() {
                                 value={password} onChange={(e)=>setPassword(e.target.value)}/>
                                 <div className="btn-wrapper mt-0">
                                     <button disabled={isLoading} className="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
+                                    <br/><br/>
+                                    <center><p>OR</p></center>
+                                    <Link to="/auth/google" className="google-signin-btn">
+                                        <button disabled={isLoading} className="btn btn-block" type="button" style={{ border: '1px solid #ccc', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.1)' }}>
+                                            <img height={50} width={150} src={`../../assets/dashboard/img/google.png`} alt="Google" className="google-icon" />
+                                        </button>
+                                    </Link>
                                 </div>
                                 <div className="go-to-btn mt-20">
     

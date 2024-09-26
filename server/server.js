@@ -1,7 +1,11 @@
 require('dotenv').config()
 
+require("./passport-config"); // To allow the passport configuration to run
+
 const express = require('express')
 const multer = require('multer')
+
+const googleOAuthRoutes = require('./routes/google-oauth-routes')
 
 const userRoutes = require('./routes/userRoutes')
 const siteFeedbacks = require('./routes/SiteFeedbackRoutes')
@@ -63,6 +67,25 @@ app.use(helmet());
 // deserialize jwt token (Preventing Unauthorized Access)
 const deserializeToken = require('./middleware/deserializeToken.js');
 app.use(deserializeToken);
+
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+
+app.use(
+  cookieSession({
+    name: "cookie-session",
+    keys: [`${process.env.COOKIE_KEY}`],
+    maxAge: 24 * 60 * 60 * 1000,
+    httpOnly: false,
+  })
+);
+
+// Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Google oauth routes
+app.use('/auth', googleOAuthRoutes)
 
 // routes
 app.use('/api/users', userRoutes)
