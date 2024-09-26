@@ -5,6 +5,13 @@ require("./passport-config"); // To allow the passport configuration to run
 const express = require('express')
 const multer = require('multer')
 
+const fs = require('fs')
+const https = require('https')
+
+// TLS certificate and key for https
+const privateKey = fs.readFileSync('./security/key.pem')
+const certificate = fs.readFileSync('./security/cert.pem')
+
 const googleOAuthRoutes = require('./routes/google-oauth-routes')
 
 const userRoutes = require('./routes/userRoutes')
@@ -50,6 +57,9 @@ const helmet = require('helmet');
 
 // express app
 const app = express()
+
+// https server
+const server = https.createServer({ key: privateKey, cert: certificate }, app)
 
 // middleware
 app.use(express.json())
@@ -98,10 +108,10 @@ app.use('/api/v6/orders', orderRoutes)
 app.use('/api/v7/orderedProduct', orderedProductRoutes)
 app.use('/api/v8/incomeHistory', incomeHistory)
 app.use('/api/v9/supplierOrder', supplierOrder)
-app.use('/api/v1/eBill',E_billRoutes)
-app.use('/api/v3/payment',Payments)
-app.use('/api/v4/Delevery',Delivary)
-app.use('/api/v5/Cart',Cart)
+app.use('/api/v1/eBill', E_billRoutes)
+app.use('/api/v3/payment', Payments)
+app.use('/api/v4/Delevery', Delivary)
+app.use('/api/v5/Cart', Cart)
 
 
 app.use('/api/suppliers', supplierRoutes);
@@ -144,7 +154,7 @@ const fileStorageEngine = multer.diskStorage({
 
 })
 
-const upload = multer({storage: fileStorageEngine})
+const upload = multer({ storage: fileStorageEngine })
 
 app.post('/single', upload.single("image"), (req, res) => {
   console.log(req.file)
@@ -159,10 +169,10 @@ app.use('/api/v6/orders', orderRoutes)
 app.use('/api/v7/orderedProduct', orderedProductRoutes)
 app.use('/api/v8/incomeHistory', incomeHistory)
 app.use('/api/v9/supplierOrder', supplierOrder)
-app.use('/api/v1/eBill',E_billRoutes)
-app.use('/api/v3/payment',Payments)
-app.use('/api/v4/Delevery',Delivary)
-app.use('/api/v5/Cart',Cart)
+app.use('/api/v1/eBill', E_billRoutes)
+app.use('/api/v3/payment', Payments)
+app.use('/api/v4/Delevery', Delivary)
+app.use('/api/v5/Cart', Cart)
 
 app.use('/api/suppliers', supplierRoutes);
 app.use('/api/inventoryProducts', inventoryProductRoutes)
@@ -183,7 +193,7 @@ const fileStorageRecipt = multer.diskStorage({
 
 })
 
-const uploadRecipt = multer({storage: fileStorageRecipt})
+const uploadRecipt = multer({ storage: fileStorageRecipt })
 
 app.post('/singleRecipt', uploadRecipt.single("imageRecipt"), (req, res) => {
   console.log(req.file)
@@ -194,13 +204,13 @@ app.post('/singleRecipt', uploadRecipt.single("imageRecipt"), (req, res) => {
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-  // listen for request
-  app.listen(process.env.PORT, ()=>{
-    console.log('connected to the db and listening on port',process.env.PORT)
+  .then(() => {
+    // listen for request
+    server.listen(process.env.PORT, () => {
+      console.log('connected to the db and listening on port', process.env.PORT)
+    })
   })
-})
-.catch((error) => {
-  console.log(error)
-})
+  .catch((error) => {
+    console.log(error)
+  })
 

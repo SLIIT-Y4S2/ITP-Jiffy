@@ -1,5 +1,5 @@
 function AccountRedirect() {
-    window.location.href = 'http://localhost:3000/account';
+    window.location.href = 'https://localhost:3000/account';
     return null;
 }
 

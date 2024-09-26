@@ -31,7 +31,7 @@ function Sidebar() {
           <ul id="components-nav1" className="nav-content collapse " data-bs-parent="#sidebar-nav">
             <Link to={{ pathname: `/employees/` }}>
               <li>
-                {/* <a href="http://localhost:3000/add-leave"> */}
+                {/* <a href="https://localhost:3000/add-leave"> */}
                 <i className="bi bi-circle"></i>
                 <span>Employee List</span>
                 {/* </a> */}
@@ -39,7 +39,7 @@ function Sidebar() {
             </Link>
             <Link to={{ pathname: `/add-employee` }}>
               <li>
-                {/* <a href="http://localhost:3000/leaves"> */}
+                {/* <a href="https://localhost:3000/leaves"> */}
                 <i className="bi bi-circle"></i><span>Add employee</span>
                 {/* </a> */}
               </li>
@@ -74,28 +74,28 @@ function Sidebar() {
           <ul id="customers-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
             <Link to={{ pathname: `/customers/` }}>
               <li>
-                {/* <a href="http://localhost:3000/customers"> */}
+                {/* <a href="https://localhost:3000/customers"> */}
                 <i className="bi bi-circle"></i><span>All Customers</span>
                 {/* </a> */}
               </li>
             </Link>
             <Link to={{ pathname: `/profile-usage/` }}>
               <li>
-                {/* <a href="http://localhost:3000/customers"> */}
+                {/* <a href="https://localhost:3000/customers"> */}
                 <i className="bi bi-circle"></i><span>Account Usage</span>
                 {/* </a> */}
               </li>
             </Link>
             <Link to={{ pathname: `/old-profiles/` }}>
               <li>
-                {/* <a href="http://localhost:3000/customers"> */}
+                {/* <a href="https://localhost:3000/customers"> */}
                 <i className="bi bi-circle"></i><span>Inactive Accounts</span>
                 {/* </a> */}
               </li>
             </Link>
             <Link to={{ pathname: `/site-feedbacks/` }}>
               <li>
-                {/* <a href="http://localhost:3000/customers"> */}
+                {/* <a href="https://localhost:3000/customers"> */}
                 <i className="bi bi-circle"></i><span>Site Feedbacks</span>
                 {/* </a> */}
               </li>
@@ -212,29 +212,29 @@ function Sidebar() {
           </a>
           <ul id="delivery-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-              <a href="http://localhost:3000/dashboardHome">
+              <a href="https://localhost:3000/dashboardHome">
                 <i className="bi bi-circle"></i><span>overview</span>
               </a>
             </li>
             <li>
-              <a href="http://localhost:3000/deliverymanager">
+              <a href="https://localhost:3000/deliverymanager">
                 <i className="bi bi-circle"></i><span>Packaged</span>
               </a>
             </li>
             <li>
-              <a href="http://localhost:3000/delivering">
+              <a href="https://localhost:3000/delivering">
                 <i className="bi bi-circle"></i><span>Delivering</span>
               </a>
             </li>
 
             <li>
-              <a href="http://localhost:3000/Completed">
+              <a href="https://localhost:3000/Completed">
                 <i className="bi bi-circle"></i><span>Completed</span>
               </a>
             </li>
 
             <li>
-              <a href="http://localhost:3000/ReportsPage">
+              <a href="https://localhost:3000/ReportsPage">
                 <i className="bi bi-circle"></i><span>Reports</span>
               </a>
             </li>
@@ -305,13 +305,13 @@ function Sidebar() {
           </a>
           <ul id="leave-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="http://localhost:3000/add-leave">
+              <a href="https://localhost:3000/add-leave">
                 <i className="bi bi-circle"></i>
                 <span>Apply for Leave</span>
               </a>
             </li>
             <li>
-              <a href="http://localhost:3000/leaves">
+              <a href="https://localhost:3000/leaves">
                 <i className="bi bi-circle"></i><span>Leave List</span>
               </a>
             </li>
