@@ -152,9 +152,9 @@ export default function AddCustomerPayment() {
       toast.success(`Order placed successfully `,{
         position: "bottom-left",
     });
-      setTimeout(() => {
-        window.location = "/account"
-      }, 2000);
+      // setTimeout(() => {
+      //   window.location = "/account"
+      // }, 2000);
     }
   }
 
