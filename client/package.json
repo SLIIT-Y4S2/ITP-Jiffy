@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "apexcharts": "^3.53.0",
-    "axios": "^1.7.7",
+    "axios": "^1.8.3",
     "chart.js": "^4.4.4",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
